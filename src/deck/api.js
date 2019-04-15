@@ -23,10 +23,10 @@ export const createDeck = user => {
   })
 }
 
-export const signOut = user => {
+export const getDecks = user => {
   return axios({
-    url: apiUrl + '/sign-out',
-    method: 'DELETE',
+    url: apiUrl + '/decks',
+    method: 'GET',
     headers: {
       'Authorization': `Token token=${user.token}`
     }

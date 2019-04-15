@@ -12,6 +12,7 @@ import ChangePassword from './auth/components/ChangePassword'
 import Alert from 'react-bootstrap/Alert'
 
 import Cards from './deck/components/Cards'
+import History from './deck/components/History'
 
 class App extends Component {
   constructor () {
@@ -56,6 +57,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/history' render={() => (
+            <History user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
