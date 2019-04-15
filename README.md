@@ -29,6 +29,10 @@ it runs successfully.
 
 ## About
 
+#### Wireframe
+
+![Wireframe](./Wireframe.png)
+
 This template is derived from GA Boston's [react-template](https://git.generalassemb.ly/ga-wdi-boston/react-template).
 Most of the development dependencies, such as linters, SCSS compiler, Webpack
 config, NPM scripts, etc in this repo come from there.

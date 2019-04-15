@@ -11,6 +11,8 @@ import ChangePassword from './auth/components/ChangePassword'
 
 import Alert from 'react-bootstrap/Alert'
 
+import Cards from './deck/components/Cards'
+
 class App extends Component {
   constructor () {
     super()
@@ -43,6 +45,9 @@ class App extends Component {
           </Alert>
         ))}
         <main className="container">
+          <Route path='/' render={() => (
+            <Cards user={user}/>
+          )} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
