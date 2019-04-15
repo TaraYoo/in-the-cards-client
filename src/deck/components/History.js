@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { getDecks } from '../api'
 // import messages from '../messages'
@@ -33,6 +33,7 @@ class History extends Component {
         <Table striped bordered hover>
           <thead>
             <tr>
+              <th>Details</th>
               <th>#</th>
               <th>Reading Date</th>
               <th>Question</th>
@@ -43,11 +44,14 @@ class History extends Component {
           <tbody>
             {decks.map(deck => (
               <tr key={deck.id}>
+                <td>
+                  <Link to={`/decks/${deck.id}`}>Details</Link>
+                </td>
                 <td>{deck.id}</td>
-                <td>placeholder</td>
+                <td>{deck.reading_date}</td>
                 <td>{deck.question}</td>
                 <td>{deck.accuracy}</td>
-                <td>placeholder</td>
+                <td>{deck.updated_on}</td>
               </tr>
             ))}
           </tbody>
