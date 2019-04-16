@@ -4,6 +4,7 @@ import { getDeck, deleteDeck } from '../api'
 import messages from '../messages'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import './Deck.scss'
 
 class Deck extends Component {
   constructor (props) {
@@ -60,13 +61,14 @@ class Deck extends Component {
         }}/>
       )
     } else {
-      const { question, id } = this.state.deck
+      const { question, id, accuracy } = this.state.deck
       const readingDate = this.state.deck.reading_date
       const formattedCards = this.state.deck.formatted_cards
 
       return (
         <Fragment>
           <h1>{question} asked on {readingDate}</h1>
+          <h2>Accuracy: { parseFloat(accuracy / 5) }</h2>
           <div className="row">
             {formattedCards.map(card => (
               <div key={card.id} className="col-sm-4 col-12 mb-5">

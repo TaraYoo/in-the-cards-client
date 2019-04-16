@@ -4,7 +4,12 @@ $error: #f08181;
 $charcoal: #ccc;
 $black: black;
 
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   background: linear-gradient(to bottom, $black 0%,#{fade-out($black, .1)} 75%,#{fade-out($black, .2)} 100%);
 }
 
