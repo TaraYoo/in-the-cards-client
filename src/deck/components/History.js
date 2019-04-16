@@ -20,7 +20,6 @@ class History extends Component {
         this.setState({
           decks: res.data.decks
         })
-        console.log(this.state)
       })
       .catch(console.error)
   }
@@ -45,7 +44,7 @@ class History extends Component {
             {decks.map(deck => (
               <tr key={deck.id}>
                 <td>
-                  <Link to={`/decks/${deck.id}`}>Details</Link>
+                  <Link to={`/history/${deck.id}`}>Details</Link>
                 </td>
                 <td>{deck.id}</td>
                 <td>{deck.reading_date}</td>

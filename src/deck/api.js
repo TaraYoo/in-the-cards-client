@@ -33,17 +33,26 @@ export const getDecks = user => {
   })
 }
 
-export const changePassword = (passwords, user) => {
+export const getDeck = (user, id) => {
   return axios({
-    url: apiUrl + '/change-password',
+    url: apiUrl + '/decks/' + id,
+    method: 'GET',
+    headers: {
+      'Authorization': `Token token=${user.token}`
+    }
+  })
+}
+
+export const editDeck = (user, id, accuracy) => {
+  return axios({
+    url: apiUrl + '/decks/' + id,
     method: 'PATCH',
     headers: {
       'Authorization': `Token token=${user.token}`
     },
     data: {
-      passwords: {
-        old: passwords.oldPassword,
-        new: passwords.newPassword
+      deck: {
+        accuracy
       }
     }
   })

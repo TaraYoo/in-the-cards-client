@@ -62,7 +62,7 @@ class Cards extends Component {
       <Fragment>
         {cards.map(card => (
           <Card key={card.id} style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="" />
+            <Card.Img variant="top" src="" />, Fragment
             <Card.Body>
               <Card.Text>
                 {card.icon}

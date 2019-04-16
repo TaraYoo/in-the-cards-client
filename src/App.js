@@ -13,6 +13,8 @@ import Alert from 'react-bootstrap/Alert'
 
 import Cards from './deck/components/Cards'
 import History from './deck/components/History'
+import Deck from './deck/components/Deck'
+import Edit from './deck/components/Edit'
 
 class App extends Component {
   constructor () {
@@ -61,6 +63,12 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/history' render={() => (
             <History user={user} />
           )} />
+          <AuthenticatedRoute user={user} exact path='/history/:id' render={(props) => (
+            <Deck user={user} {...props}/>
+          )}/>
+          <AuthenticatedRoute user={user} exact path='/history/:id/edit' render={(props) => (
+            <Edit user={user} {...props}/>
+          )}/>
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
