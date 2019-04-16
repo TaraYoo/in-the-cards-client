@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
-
+import Question from './Question.js'
 import { drawCards, createDeck } from '../api'
 // import messages from '../messages'
 import Card from 'react-bootstrap/Card'
@@ -28,20 +28,23 @@ class Cards extends Component {
         name: 'Future',
         icon: '😃',
         meaning: 'This card represents the future'
-      }]
+      }],
+      question: null
     }
   }
 
   onDraw = event => {
     event.preventDefault()
+    console.log('fired')
 
+    const question = this.state.question
+    console.log(question)
     if (this.props.user) {
-      createDeck(this.props.user)
+      createDeck(this.props.user, question)
         .then(res => {
           this.setState({
             cards: res.data.deck.formatted_cards
           })
-          console.log(this.state)
         })
         .then(console.error)
     } else {
@@ -53,6 +56,14 @@ class Cards extends Component {
         })
         .catch(console.error)
     }
+  }
+
+  handleChange = event => {
+    event.preventDefault()
+    this.setState({
+      question: event.target.value
+    })
+    console.log('fired')
   }
 
   render () {
@@ -78,9 +89,10 @@ class Cards extends Component {
             </div>
           ))}
         </div>
-        <Button variant="light" size="lg" onClick={this.onDraw} block>
-          { this.props.user ? 'Draw cards' : 'Draw cards - sign in to save' }
+        { this.props.user ? <Question handleChange={this.handleChange} handleSubmit={this.onDraw} user={this.props.user} /> : <Button variant="light" size="lg" onClick={this.onDraw} block>
+                  Draw cards - sign in to save
         </Button>
+        }
       </Fragment>
     )
   }

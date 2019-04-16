@@ -8,7 +8,7 @@ export const drawCards = () => {
   })
 }
 
-export const createDeck = user => {
+export const createDeck = (user, question) => {
   return axios({
     url: apiUrl + '/decks',
     method: 'POST',
@@ -17,7 +17,7 @@ export const createDeck = user => {
     },
     data: {
       deck: {
-        question: 'placeholder question'
+        question
       }
     }
   })
