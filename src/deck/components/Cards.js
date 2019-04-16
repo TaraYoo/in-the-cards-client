@@ -21,13 +21,13 @@ class Cards extends Component {
         id: 9998,
         name: 'Present',
         icon: '😂',
-        meaning: 'This card represents the past'
+        meaning: 'This card represents the present'
       },
       {
         id: 9997,
         name: 'Future',
         icon: '😃',
-        meaning: 'This card represents the past'
+        meaning: 'This card represents the future'
       }]
     }
   }
@@ -60,20 +60,24 @@ class Cards extends Component {
 
     return (
       <Fragment>
-        {cards.map(card => (
-          <Card key={card.id} style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="" />, Fragment
-            <Card.Body>
-              <Card.Text>
-                {card.icon}
-              </Card.Text>
-              <Card.Title>{card.name}</Card.Title>
-              <Card.Text>
-                {card.meaning}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        ))}
+        <div className="row">
+          {cards.map(card => (
+            <div key={card.id} className="col-sm-4 col-12 mb-4">
+              <Card key={card.id} style={{ width: '18rem' }} className="tarot-cards">
+                <Card.Img variant="top" src="" />
+                <Card.Body>
+                  <Card.Text className="icons">
+                    {card.icon}
+                  </Card.Text>
+                  <Card.Title className="title">{card.name}</Card.Title>
+                  <Card.Text>
+                    {card.meaning}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+          ))}
+        </div>
         <Button variant="primary" size="lg" onClick={this.onDraw} block>
           { this.props.user ? 'Draw cards' : 'Draw cards - sign in to save' }
         </Button>
