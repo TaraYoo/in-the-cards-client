@@ -57,3 +57,13 @@ export const editDeck = (user, id, accuracy) => {
     }
   })
 }
+
+export const deleteDeck = (user, id) => {
+  return axios({
+    url: apiUrl + '/decks/' + id,
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Token token=${user.token}`
+    }
+  })
+}

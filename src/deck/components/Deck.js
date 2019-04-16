@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 //
-import { getDeck } from '../api'
+import { getDeck, deleteDeck } from '../api'
 // import messages from '../messages'
 // import Table from 'react-bootstrap/Table'
 import Card from 'react-bootstrap/Card'
@@ -28,6 +28,16 @@ class Deck extends Component {
       .catch(console.error)
   }
 
+  handleDelete = event => {
+    event.preventDefault()
+
+    const deleteId = parseInt(event.target.id)
+
+    deleteDeck(this.props.user, deleteId)
+      .then(console.log)
+      .catch(console.error)
+  }
+
   render () {
     // const formattedCards = this.state.deck.formatted_cards
     if (!this.state.deck) {
@@ -37,7 +47,7 @@ class Deck extends Component {
         </div>
       )
     } else {
-      const { question } = this.state.deck
+      const { question, id } = this.state.deck
       const readingDate = this.state.deck.reading_date
       const formattedCards = this.state.deck.formatted_cards
 
@@ -61,6 +71,8 @@ class Deck extends Component {
           <Link to={`${this.props.match.url}/edit`}>
             <Button variant="primary">Edit</Button>
           </Link>
+          <Button variant="danger" id={id} onClick={this.handleDelete}>Delete</Button>
+
         </Fragment>
       )
     }
