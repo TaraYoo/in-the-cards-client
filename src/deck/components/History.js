@@ -4,7 +4,6 @@ import { withRouter, Link } from 'react-router-dom'
 import { getDecks } from '../api'
 // import messages from '../messages'
 import Table from 'react-bootstrap/Table'
-import './History.scss'
 
 class History extends Component {
   constructor () {

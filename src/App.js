@@ -67,7 +67,7 @@ class App extends Component {
             <Deck user={user} alert={this.alert} {...props}/>
           )}/>
           <AuthenticatedRoute user={user} exact path='/history/:id/edit' render={(props) => (
-            <Edit user={user} {...props}/>
+            <Edit user={user} alert={this.alert} {...props}/>
           )}/>
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
