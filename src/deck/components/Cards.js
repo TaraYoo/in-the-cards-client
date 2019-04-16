@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
 import Question from './Question.js'
 import { drawCards, createDeck } from '../api'
-// import messages from '../messages'
+import messages from '../messages'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
@@ -35,18 +35,20 @@ class Cards extends Component {
 
   onDraw = event => {
     event.preventDefault()
-    console.log('fired')
 
     const question = this.state.question
-    console.log(question)
     if (this.props.user) {
       createDeck(this.props.user, question)
         .then(res => {
           this.setState({
             cards: res.data.deck.formatted_cards
           })
+          this.props.alert(messages.saveSuccess, 'success')
         })
-        .then(console.error)
+        .then(() => history.push('/'))
+        .catch(() => {
+          this.props.alert(messages.saveFailure, 'danger')
+        })
     } else {
       drawCards()
         .then(res => {
@@ -54,7 +56,9 @@ class Cards extends Component {
             cards: res.data.cards
           })
         })
-        .catch(console.error)
+        .catch(() => {
+          this.props.alert(messages.drawFailure, 'danger')
+        })
     }
   }
 
@@ -63,7 +67,6 @@ class Cards extends Component {
     this.setState({
       question: event.target.value
     })
-    console.log('fired')
   }
 
   render () {

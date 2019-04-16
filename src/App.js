@@ -49,7 +49,7 @@ class App extends Component {
         ))}
         <main className="container">
           <Route exact path='/' render={() => (
-            <Cards user={user}/>
+            <Cards alert={this.alert} user={user}/>
           )} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
@@ -61,10 +61,10 @@ class App extends Component {
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/history' render={() => (
-            <History user={user} />
+            <History alert={this.alert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/history/:id' render={(props) => (
-            <Deck user={user} {...props}/>
+            <Deck user={user} alert={this.alert} {...props}/>
           )}/>
           <AuthenticatedRoute user={user} exact path='/history/:id/edit' render={(props) => (
             <Edit user={user} {...props}/>
