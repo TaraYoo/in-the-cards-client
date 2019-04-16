@@ -48,7 +48,7 @@ class App extends Component {
           </Alert>
         ))}
         <main className="container">
-          <Route path='/' render={() => (
+          <Route exact path='/' render={() => (
             <Cards user={user}/>
           )} />
           <Route path='/sign-up' render={() => (

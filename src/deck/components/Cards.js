@@ -62,7 +62,7 @@ class Cards extends Component {
       <Fragment>
         <div className="row">
           {cards.map(card => (
-            <div key={card.id} className="col-sm-4 col-12 mb-4">
+            <div key={card.id} className="col-sm-4 col-12 mb-5">
               <Card key={card.id} style={{ width: '18rem' }} className="tarot-cards">
                 <Card.Img variant="top" src="" />
                 <Card.Body>
@@ -78,7 +78,7 @@ class Cards extends Component {
             </div>
           ))}
         </div>
-        <Button variant="primary" size="lg" onClick={this.onDraw} block>
+        <Button variant="light" size="lg" onClick={this.onDraw} block>
           { this.props.user ? 'Draw cards' : 'Draw cards - sign in to save' }
         </Button>
       </Fragment>

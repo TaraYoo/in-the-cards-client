@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom'
 import { signIn } from '../api'
 import messages from '../messages'
 
+import './SignIn.scss'
+
 class SignIn extends Component {
   constructor () {
     super()
@@ -25,7 +27,6 @@ class SignIn extends Component {
 
     signIn(this.state)
       .then(res => setUser(res.data.user))
-      .then(() => alert(messages.signInSuccess, 'success'))
       .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
@@ -58,7 +59,7 @@ class SignIn extends Component {
           placeholder="Password"
           onChange={this.handleChange}
         />
-        <button type="submit">Sign In</button>
+        <button className="light" type="submit">Sign In</button>
       </form>
     )
   }
