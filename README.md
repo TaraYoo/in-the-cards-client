@@ -113,3 +113,8 @@ Developers should run these often!
 1. All content is licensed under a CC­BY­NC­SA 4.0 license.
 1. All software code is licensed under GNU GPLv3. For commercial use or
     alternative licensing, please contact legal@ga.co.
+
+
+TODO:
+- deck trying to save itself before actually saving. Probably a .. double click issue
+- Show that there is no history yet if there is no history
