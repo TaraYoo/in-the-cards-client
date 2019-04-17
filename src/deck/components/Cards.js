@@ -36,30 +36,31 @@ class Cards extends Component {
   onDraw = event => {
     event.preventDefault()
 
+    drawCards()
+      .then(res => {
+        this.setState({
+          cards: res.data.cards
+        })
+      })
+      .catch(() => {
+        this.props.alert(messages.drawFailure, 'danger')
+      })
+  }
+
+  onSubmit = event => {
+    event.preventDefault()
+
     const question = this.state.question
-    if (this.props.user) {
-      createDeck(this.props.user, question)
-        .then(res => {
-          this.setState({
-            cards: res.data.deck.formatted_cards
-          })
-          this.props.alert(messages.saveSuccess, 'success')
+    createDeck(this.props.user, question)
+      .then(res => {
+        this.setState({
+          cards: res.data.deck.formatted_cards
         })
-        .then(() => history.push('/'))
-        .catch(() => {
-          this.props.alert(messages.saveFailure, 'danger')
-        })
-    } else {
-      drawCards()
-        .then(res => {
-          this.setState({
-            cards: res.data.cards
-          })
-        })
-        .catch(() => {
-          this.props.alert(messages.drawFailure, 'danger')
-        })
-    }
+        this.props.alert(messages.saveSuccess, 'success')
+      })
+      .catch(() => {
+        this.props.alert(messages.saveFailure, 'danger')
+      })
   }
 
   handleChange = event => {
@@ -77,7 +78,7 @@ class Cards extends Component {
         <div className="row">
           {cards.map(card => (
             <div key={card.id} className="col-sm-4 col-12 mb-5">
-              <Card key={card.id} style={{ width: '18rem' }} className="tarot-cards">
+              <Card key={card.id} style={{ maxWidth: '20rem', marginRight: 'auto', marginLeft: 'auto' }} className="tarot-cards">
                 <Card.Img variant="top" src="" />
                 <Card.Body>
                   <Card.Text className="icons">
@@ -92,7 +93,7 @@ class Cards extends Component {
             </div>
           ))}
         </div>
-        { this.props.user ? <Question handleChange={this.handleChange} handleSubmit={this.onDraw} user={this.props.user} /> : <Button variant="light" size="lg" onClick={this.onDraw} block>
+        { this.props.user ? <Question handleChange={this.handleChange} handleSubmit={this.onSubmit} user={this.props.user} /> : <Button variant="light" size="lg" onClick={this.onDraw} block>
                   Draw cards - sign in to save
         </Button>
         }
