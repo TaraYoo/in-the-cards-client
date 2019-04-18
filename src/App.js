@@ -16,6 +16,8 @@ import History from './deck/components/History'
 import Deck from './deck/components/Deck'
 import Edit from './deck/components/Edit'
 
+import Upload from './upload/components/Upload'
+
 class App extends Component {
   constructor () {
     super()
@@ -57,6 +59,7 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
+          <Route path='/upload' component={Upload} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
