@@ -25,19 +25,19 @@ it runs successfully.
 
 ## Technologies used
 1. axios
-  1. For API requests
+  - For API requests
 2. bootstrap / react-bootstrap
-  1. For styling, and structure
+  - For styling, and structure
 4. dotenv
-  1. To import config variables from .env files
+  - To import config variables from .env files
 5. promise
-  1. To use promise chains
+  - To use promise chains
 6. React
-  1. This front end is written in React.js
+  - This front end is written in React.js
 7. react-dom
 8. react-router-dom
 9. react-toastify
-  1. To use toasts for user alerts nad feedback
+  - To use toasts for user alerts nad feedback
 
 ## Planning
 
@@ -91,6 +91,9 @@ The above links are authorization features built by General Assembly Boston.
 
 ### Current app
 ![current app](./finalApp.png)
+
+### Future Goals
+Create feature for users to upload their own card images to aws.
 
 
 ## Available Tasks
