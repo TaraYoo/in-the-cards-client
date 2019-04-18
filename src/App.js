@@ -9,7 +9,8 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 
-import Alert from 'react-bootstrap/Alert'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import Cards from './deck/components/Cards'
 import History from './deck/components/History'
@@ -17,6 +18,8 @@ import Deck from './deck/components/Deck'
 import Edit from './deck/components/Edit'
 
 import Upload from './upload/components/Upload'
+
+toast.configure()
 
 class App extends Component {
   constructor () {
@@ -33,22 +36,27 @@ class App extends Component {
   clearUser = () => this.setState({ user: null })
 
   alert = (message, type) => {
-    this.setState({ alerts: [...this.state.alerts, { message, type }] })
+    if (type === 'success') {
+      toast.success(message, {
+        position: toast.POSITION.BOTTOM_RIGHT
+      })
+    } else {
+      toast.error(message, {
+        position: toast.POSITION.BOTTOM_RIGHT
+      })
+    }
   }
 
   render () {
-    const { alerts, user } = this.state
+    const { user } = this.state
 
     return (
       <React.Fragment>
         <Header user={user} />
-        {alerts.map((alert, index) => (
-          <Alert key={index} dismissible variant={alert.type}>
-            <Alert.Heading>
-              {alert.message}
-            </Alert.Heading>
-          </Alert>
-        ))}
+        <div>
+          <button onClick={this.notify}>Notify</button>
+          <ToastContainer autoClose={2500} />
+        </div>
         <main className="container">
           <Route exact path='/' render={() => (
             <Cards alert={this.alert} user={user}/>
