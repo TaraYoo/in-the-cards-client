@@ -1,23 +1,19 @@
 # react-auth-template
 
 The front end for in-the-cards, a tarot reading app. See the back-end repository
-[here](https://github.com/TaraYoo/in-the-cards).
+[here](https://github.com/TaraYoo/in-the-cards). The back-end is deployed [here](https://pure-lowlands-31271.herokuapp.com/cards).
 
-## Installation
+This app is deployed [here](https://tarayoo.github.io/in-the-cards-client/#/)
 
-1. [Download](../../archive/master.zip) this template.
-1. Unzip and rename the template directory (`unzip ~/Downloads/react-auth-template-master.zip`).
-1. Move into the new project and `git init`.
-1. Empty [`README.md`](README.md) and fill with your own content.
-1. Replace `ga-wdi-boston.react-auth-template` in `package.json` with your
-   projects name.
-1. Replace the `"homepage"` field in `package.json` with your (public) Github
-   account name and repository name.
-1. Install dependencies with `npm install`.
-1. `git add` and `git commit` your changes.
-1. Run the development server with `npm start`.
-
-## Deployment
+## Set up and Installation
+1. Download this file.
+1. Unzip and rename the template directory (unzip ~/Downloads/react-auth-template-master.zip).
+1. Move into the new project and git init.
+1. Replace in-the-cards-client in package.json with your projects name.
+1. Replace the "homepage" field in package.json with your (public) Github account name and repository name.
+1. Install dependencies with npm install.
+1. git add and git commit your changes.
+1. Run the development server with npm start.
 
 Before deploying, you first need to make sure the `homepage` key in your
 `package.json` is pointing to the correct value. It should be the url of your
@@ -27,7 +23,23 @@ To deploy you should first make sure you are on the `master` branch with a
 clean working directory, then you can run `npm run deploy` and wait to see if
 it runs successfully.
 
-## About
+## Technologies used
+1. axios
+  1. For API requests
+2. bootstrap / react-bootstrap
+  1. For styling, and structure
+4. dotenv
+  1. To import config variables from .env files
+5. promise
+  1. To use promise chains
+6. React
+  1. This front end is written in React.js
+7. react-dom
+8. react-router-dom
+9. react-toastify
+  1. To use toasts for user alerts nad feedback
+
+## Planning
 
 #### Wireframe
 
@@ -37,68 +49,51 @@ This template is derived from GA Boston's [react-template](https://git.generalas
 Most of the development dependencies, such as linters, SCSS compiler, Webpack
 config, NPM scripts, etc in this repo come from there.
 
-It includes all the components and routes needed to sign up, sign in, change
-passwords, and sign out of an API built with either template linked above, with
-no need for modification.
-
 ## Structure
 
-Currently, the top-level `App` component stores the currently authenticated
+The top-level `App` component stores the currently authenticated
 user in state, as well as data related to the flash messages. `App` renders the
 `Header` component, and a list of routes, each of which render a component from
 `src/auth/components`. The `auth` directory has two non-component files, `api`
 and `messages`, which contain all the needed `fetch` calls, and messages to
 display when API calls succeed or fail, respectively.
 
-We recommend following this pattern in your app. For instance, if you are making
-an app that keeps track of books, you might want a `books` directory next to
-`auth`, which contains its own `api` and `messages` files, as well as a
-`components` directory.
+The other components - `Deck`, `Cards`, etc. - follows the same pattern.
 
-## Features
+## Features and user stories
 
-### `<AuthenticatedRoute />`
+### History (as a user, I'd like to see my past readings)
 
-This template contains a handy component for creating routes that require a
-user to be authenticated before visiting. This component lives in
-`src/auth/components/AuthenticatedRoute.js` and is already required in `App`.
-It's a thin wrapper around React Router's `<Route />` component. The only
-difference is that it expects a prop called `user`, and if that prop is falsy,
-it will render a `<Redirect />` that takes the user to `/`. **If you want to use
-it, you must pass it the currently authenticated as a prop!**
+History gets all past readings associated with a user, sorted by most recently
+updated or created to least recent. Users can keep track of their readings'
+accuracy, as well as delete unnecessary readings
 
-It supports both the `component=` and `render=` attributes, but like `<Route />`
-it will not forward props to the component if you use `component=`.
+### History/:id (as a user, I'd like to see details for a past reading)
 
-### Flash Messages
+When a user clicks on the details button in the History table, they'll see
+the specific cards drawn for the particular deck. Users can delete the particular
+reading, or update its accuracy
 
-The `App` component has a rudimentary version of flash messages. To use it,
-pass `this.flash` into a subcomponent of `App` as a prop and call it from there.
-It expects two arguments: a message to display, and a message type, which is one
-of `'flash-success'`, `'flash-warning'`, and `'flash-error'` which make the
-message green, yellow, and red, respectively. You must pass one of these types.
-You can add more types by adding more CSS rules in `App.scss`.
+### History/:id/edit (as a user, I'd like to track how accurate my readings were)
 
-In the auth components, flash messages are used in conjunction with the
- `auth/messages` file to select from a list of predefined success/failure
- messages. To undertand how to do this, look at the definition of `flash` in
- `App.js`, the `signUp` method in `auth/components/SignUp.js`, and the
- `auth/messages.js` file.
+Each deck details component has an edit button that opens a form for users to
+edit a reading's accuracy. This app will also keep track of when the user last
+updated an accuracy
 
- To change the duration of the message, replace `2000` with a value of your
- choice (in milliseconds) in the `flash` method definition in `App.js`.
+### / (as a user, I'd like to do a three-card-spread reading)
+Unauthorized users can still get a three card spread by clicking the draw button.
+However, if they want to save a deck and keep track of its accuracy, they'd need
+to sign in. After a user signs in, the deck gets saved whenever they click the
+draw cards button. Users can also write down what questions they'd like to ask.
 
- ### `src/apiConfig.js`
+### /sign-up, /sign-in, /sign-out, /change-password
+The above links are authorization features built by General Assembly Boston.
 
- Just like in
-[browser-template](https://git.generalassemb.ly/ga-wdi-boston/browser-template),
-this file will determine whether you're in a production or development
-environment and choose an API URL accordingly. Don't forget to replace the
-`production` URL with your deployed API's URL.
+### Current app
+![current app](./finalApp.png)
 
-## Tasks
 
-Developers should run these often!
+## Available Tasks
 
 - `npm run nag`: runs code quality analysis tools on your code and complains.
 - `npm run make-standard`: reformats all your code in the JavaScript Standard
@@ -108,13 +103,7 @@ Developers should run these often!
     them
 - `npm run deploy`: builds and deploys master branch
 
-## [License](LICENSE)
 
-1. All content is licensed under a CC­BY­NC­SA 4.0 license.
-1. All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
-
-
-TODO:
+## Future Goals
 - deck trying to save itself before actually saving. Probably a .. double click issue
 - Show that there is no history yet if there is no history
