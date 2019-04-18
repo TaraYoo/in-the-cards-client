@@ -3,8 +3,9 @@ import { withRouter } from 'react-router-dom'
 import Question from './Question.js'
 import { drawCards, createDeck } from '../api'
 import messages from '../messages'
-import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import './Cards.scss'
+import SingleCard from './SingleCard'
 
 class Cards extends Component {
   constructor () {
@@ -72,25 +73,11 @@ class Cards extends Component {
 
   render () {
     const { cards } = this.state
-
     return (
       <Fragment>
         <div className="row">
-          {cards.map(card => (
-            <div key={card.id} className="col-sm-4 col-12 mb-5">
-              <Card key={card.id} style={{ maxWidth: '20rem', marginRight: 'auto', marginLeft: 'auto' }} className="tarot-cards">
-                <Card.Img variant="top" src="" />
-                <Card.Body>
-                  <Card.Text className="icons">
-                    {card.icon}
-                  </Card.Text>
-                  <Card.Title className="title">{card.name}</Card.Title>
-                  <Card.Text>
-                    {card.meaning}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </div>
+          {cards.map((card, index) => (
+            <SingleCard key={card.id} card={card} index={index}/>
           ))}
         </div>
         { this.props.user ? <Question handleChange={this.handleChange} handleSubmit={this.onSubmit} user={this.props.user} /> : <Button variant="light" size="lg" onClick={this.onDraw} block>

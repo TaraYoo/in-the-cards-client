@@ -2,9 +2,10 @@ import React, { Component, Fragment } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { getDeck, deleteDeck } from '../api'
 import messages from '../messages'
-import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import './Deck.scss'
+
+import SingleCard from './SingleCard'
 
 class Deck extends Component {
   constructor (props) {
@@ -70,21 +71,8 @@ class Deck extends Component {
           <h1>{question} asked on {readingDate}</h1>
           <h2>Accuracy: { parseFloat(accuracy / 5) }</h2>
           <div className="row">
-            {formattedCards.map(card => (
-              <div key={card.id} className="col-sm-4 col-12 mb-5">
-                <Card key={card.id} style={{ width: '18rem' }} className="tarot-cards">
-                  <Card.Img variant="top" src="" />
-                  <Card.Body>
-                    <Card.Text>
-                      {card.icon}
-                    </Card.Text>
-                    <Card.Title>{card.name}</Card.Title>
-                    <Card.Text>
-                      {card.meaning}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </div>
+            {formattedCards.map((card, index) => (
+              <SingleCard key={card.id} card={formattedCards} index={index} deck={this.state.deck}/>
             ))}
           </div>
           <Link to={`${this.props.match.url}/edit`}>
