@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter, Link } from 'react-router-dom'
-
-import { getDecks } from '../api'
+import Button from 'react-bootstrap/Button'
+import { getDecks, deleteDeck } from '../api'
 import messages from '../messages'
 import Table from 'react-bootstrap/Table'
 
@@ -26,6 +26,31 @@ class History extends Component {
       })
   }
 
+  handleDelete = event => {
+    event.preventDefault()
+
+    const deleteId = parseInt(event.target.id)
+
+    deleteDeck(this.props.user, deleteId)
+      .then(() => {
+        this.props.alert(messages.deleteSuccess, 'success')
+      })
+      .then(() => {
+        getDecks(this.props.user)
+          .then(res => {
+            this.setState({
+              decks: res.data.decks
+            })
+          })
+          .catch(() => {
+            this.props.alert(messages.drawFailure, 'danger')
+          })
+      })
+      .catch(() => {
+        this.props.alert(messages.drawFailure, 'danger')
+      })
+  }
+
   render () {
     const { decks } = this.state
 
@@ -44,9 +69,10 @@ class History extends Component {
                 <th>Details</th>
                 <th>#</th>
                 <th>Reading Date</th>
-                <th>Question</th>
+                <th className="question">Question</th>
                 <th>Accuracy</th>
                 <th>Updated on</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -60,6 +86,7 @@ class History extends Component {
                   <td>{deck.question}</td>
                   <td>{deck.accuracy}</td>
                   <td>{deck.updated_on}</td>
+                  <td><Button variant="danger" id={deck.id} onClick={this.handleDelete}>Delete</Button></td>
                 </tr>
               ))}
             </tbody>

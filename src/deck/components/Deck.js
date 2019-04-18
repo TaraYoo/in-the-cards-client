@@ -76,7 +76,7 @@ class Deck extends Component {
             ))}
           </div>
           <Link to={`${this.props.match.url}/edit`}>
-            <Button variant="primary">Edit</Button>
+            <Button variant="primary">Update Accuracy</Button>
           </Link>
           <Button variant="danger" id={id} onClick={this.handleDelete}>Delete</Button>
 

@@ -9,7 +9,7 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import Cards from './deck/components/Cards'
@@ -17,9 +17,11 @@ import History from './deck/components/History'
 import Deck from './deck/components/Deck'
 import Edit from './deck/components/Edit'
 
-import Upload from './upload/components/Upload'
+// import Upload from './upload/components/Upload'
 
-toast.configure()
+toast.configure({
+  autoClose: 2000
+})
 
 class App extends Component {
   constructor () {
@@ -47,16 +49,13 @@ class App extends Component {
     }
   }
 
+  // <Route path='/upload' component={Upload} />
   render () {
     const { user } = this.state
 
     return (
       <React.Fragment>
         <Header user={user} />
-        <div>
-          <button onClick={this.notify}>Notify</button>
-          <ToastContainer autoClose={2500} />
-        </div>
         <main className="container">
           <Route exact path='/' render={() => (
             <Cards alert={this.alert} user={user}/>
@@ -67,7 +66,6 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
-          <Route path='/upload' component={Upload} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
