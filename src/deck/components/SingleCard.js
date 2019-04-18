@@ -14,7 +14,6 @@ class SingleCard extends Component {
   }
 
   componentDidMount () {
-    console.log(this.props)
     if (this.props.index === 0) {
       this.setState({
         cat: 'past'

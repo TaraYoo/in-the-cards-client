@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 
 import { getDecks } from '../api'
-// import messages from '../messages'
+import messages from '../messages'
 import Table from 'react-bootstrap/Table'
 
 class History extends Component {
@@ -21,7 +21,9 @@ class History extends Component {
           decks: res.data.decks
         })
       })
-      .catch(console.error)
+      .catch(() => {
+        this.props.alert(messages.drawFailure, 'danger')
+      })
   }
 
   render () {

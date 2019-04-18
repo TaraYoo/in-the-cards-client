@@ -72,7 +72,7 @@ class Deck extends Component {
           <h2>Accuracy: { parseFloat(accuracy / 5) }</h2>
           <div className="row">
             {formattedCards.map((card, index) => (
-              <SingleCard key={card.id} card={formattedCards} index={index} deck={this.state.deck}/>
+              <SingleCard key={card.id} card={card} index={index} deck={this.state.deck}/>
             ))}
           </div>
           <Link to={`${this.props.match.url}/edit`}>
