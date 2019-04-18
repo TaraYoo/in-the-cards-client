@@ -7,7 +7,7 @@ This app is deployed [here](https://tarayoo.github.io/in-the-cards-client/#/)
 
 ## Set up and Installation
 1. Download this file.
-1. Unzip and rename the template directory (unzip ~/Downloads/react-auth-template-master.zip).
+1. Unzip and rename the template directory (unzip ~/Downloads/in-the-cards-client-master.zip).
 1. Move into the new project and git init.
 1. Replace in-the-cards-client in package.json with your projects name.
 1. Replace the "homepage" field in package.json with your (public) Github account name and repository name.
