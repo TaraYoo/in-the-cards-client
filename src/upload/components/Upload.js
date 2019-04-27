@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { DirectUpload } from 'activestorage'
 // import Form from 'react-bootstrap/Form'
 // import Button from 'react-bootstrap/Button'
 
