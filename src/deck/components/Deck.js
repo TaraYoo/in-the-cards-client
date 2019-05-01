@@ -75,10 +75,14 @@ class Deck extends Component {
               <SingleCard key={card.id} card={card} index={index} deck={this.state.deck}/>
             ))}
           </div>
-          <Link to={`${this.props.match.url}/edit`}>
-            <Button variant="primary">Update Accuracy</Button>
-          </Link>
-          <Button variant="danger" id={id} onClick={this.handleDelete}>Delete</Button>
+          <div className="d-flex justify-content-center" style={{ width: '100%' }}>
+            <div style={{ width: '70%' }}>
+              <Link to={`${this.props.match.url}/edit`}>
+                <Button variant="primary" className="mb-3" block>Update Accuracy</Button>
+              </Link>
+              <Button variant="danger" id={id} onClick={this.handleDelete} block>Delete</Button>
+            </div>
+          </div>
 
         </Fragment>
       )

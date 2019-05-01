@@ -15,19 +15,16 @@ class Cards extends Component {
       cards: [{
         id: 9999,
         name: 'Past',
-        icon: '😁',
         meaning: 'This card represents the past'
       },
       {
         id: 9998,
         name: 'Present',
-        icon: '😂',
         meaning: 'This card represents the present'
       },
       {
         id: 9997,
         name: 'Future',
-        icon: '😃',
         meaning: 'This card represents the future'
       }],
       question: null

@@ -36,7 +36,7 @@ class SingleCard extends Component {
 
     return (
       <div key={id} className="col-sm-4 col-12 mb-5">
-        <Card key={id} style={{ maxWidth: '20rem', marginRight: 'auto', marginLeft: 'auto' }} className="tarot-cards" bg="dark" text="white" border="warning">
+        <Card key={id} style={{ maxWidth: '20rem', marginRight: 'auto', marginLeft: 'auto' }} className="tarot-cards" bg="dark" text="white">
           <Card.Img variant="top" src="" />
           <Card.Header>{this.state.cat}</Card.Header>
           <Card.Body>
